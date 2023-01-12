@@ -1,6 +1,7 @@
 const elForm = document.querySelector(".js-form");
 const elInput = document.querySelector(".js-input");
 const elList = document.querySelector(".js-list");
+const elLogOutBtn = document.querySelector(".js-logout");
 const localData = localStorage.getItem("token");
 
 const renderTodo = (array, node) => {
@@ -10,7 +11,7 @@ const renderTodo = (array, node) => {
   array.forEach((todo) => {
     node.innerHTML += `
     <li class="list-group-item d-flex align-items-center justify-content-between">
-      <p>${todo.id}. ${todo.todo_value}</p>
+      <p2>${todo.id}. ${todo.todo_value}</p2>
       <div class="">
         <button class="btn btn-warning js-edit" data-todo-id="${todo.id}">EDIT</button>
         <button class="btn btn-danger js-delete" data-todo-id="${todo.id}">DELETE</button>
@@ -33,6 +34,11 @@ const getTodos = async () => {
 };
 
 getTodos();
+
+elLogOutBtn.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  location.reload();
+});
 
 elForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
